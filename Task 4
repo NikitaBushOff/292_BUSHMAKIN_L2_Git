@@ -1,0 +1,20 @@
+function findMissing(list) {
+    const n = list.length;
+    const diff1 = list[1] - list[0];
+    const diff2 = list[2] - list[1];
+    
+    let commonDiff;
+    if (Math.abs(diff1) < Math.abs(diff2)) {
+        commonDiff = diff1;
+    } else {
+        commonDiff = diff2;
+    }
+    
+    for (let i = 0; i < n - 1; i++) {
+        if (list[i + 1] - list[i] !== commonDiff) {
+            return list[i] + commonDiff;
+        }
+    }
+}
+
+console.log(findMissing([1, 3, 5, 9, 11])); 
