@@ -1,0 +1,18 @@
+function toWeirdCase(string) {
+    const words = string.split(' ');
+    const result = [];
+    
+    for (let word of words) {
+        let transformedWord = '';
+        for (let i = 0; i < word.length; i++) {
+            if (i % 2 === 0) {
+                transformedWord += word[i].toUpperCase();
+            } else {
+                transformedWord += word[i].toLowerCase();
+            }
+        }
+        result.push(transformedWord);
+    }
+    
+    return result.join(' ');
+}
