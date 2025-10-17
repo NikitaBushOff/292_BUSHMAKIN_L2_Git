@@ -1,0 +1,10 @@
+function whatCentury(year) {
+    const c = Math.ceil(parseInt(year) / 100);
+    const d = c % 10;
+    const dd = c % 100;
+    
+    return c + (dd >= 11 && dd <= 13 ? "th" : 
+                d === 1 ? "st" :
+                d === 2 ? "nd" : 
+                d === 3 ? "rd" : "th");
+}
