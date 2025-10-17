@@ -1,0 +1,19 @@
+function ipv4Parser(ip, mask){
+    // Разбиваем IP и маску на октеты
+    const ipOctets = ip.split('.').map(Number);
+    const maskOctets = mask.split('.').map(Number);
+    
+    const networkBlock = [];
+    const hostIdentifier = [];
+    
+    // Выполняем побитовое AND для каждого октета
+    for (let i = 0; i < 4; i++) {
+        const networkOctet = ipOctets[i] & maskOctets[i];
+        const hostOctet = ipOctets[i] & ~maskOctets[i];
+        
+        networkBlock.push(networkOctet);
+        hostIdentifier.push(hostOctet);
+    }
+    
+    return [networkBlock.join('.'), hostIdentifier.join('.')];
+}
