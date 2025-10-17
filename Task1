@@ -1,0 +1,36 @@
+function hasTwoCubeSums(n) {
+    const ways = [];
+    const limit = Math.cbrt(n);
+    
+    for (let a = 1; a <= limit; a++) {
+        for (let b = a; b <= limit; b++) {
+            const sum = a ** 3 + b ** 3;
+            
+            if (sum === n) {
+                ways.push([a, b]);
+            }
+            
+            if (sum > n) {
+                break; 
+            }
+        }
+    }
+    
+    if (ways.length >= 2) {
+        for (let i = 0; i < ways.length; i++) {
+            for (let j = i + 1; j < ways.length; j++) {
+                const [a1, b1] = ways[i];
+                const [a2, b2] = ways[j];
+                
+                const allNumbers = new Set([a1, b1, a2, b2]);
+                if (allNumbers.size === 4) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+console.log(hasTwoCubeSums(1729)); 
+console.log(hasTwoCubeSums(42));   
